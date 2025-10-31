@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Natal! 🎅🍪</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #0f3a6e, #1a1a2e);
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Flocos de neve caindo */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #fff;
+            font-size: 1.2em;
+            pointer-events: none;
+            animation: fall linear infinite;
+            opacity: 0.9;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* Cabeçalho */
+        header {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #00ff00;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 10px;
+            color: #ffd700;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ff0000, 0 0 20px #00ff00; }
+            to { text-shadow: 0 0 20px #ff0000, 0 0 30px #00ff00, 0 0 40px #ffff00; }
+        }
+
+        /* Container principal */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Árvore de Natal */
+        .christmas-tree {
+            width: 300px;
+            height: 400px;
+            position: relative;
+            margin: 40px 0;
+        }
+
+        .tree-layer {
+            width: 0;
+            height: 0;
+            border-left: 80px solid transparent;
+            border-right: 80px solid transparent;
+            border-bottom: 120px solid #0a5;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: twinkle 3s infinite;
+        }
+
+        .tree-layer:nth-child(1) { top: 0; border-bottom-width: 100px; width: 160px; left: 50%; transform: translateX(-50%); }
+        .tree-layer:nth-child(2) { top: 70px; border-bottom-width: 130px; width: 200px; left: 50%; transform: translateX(-50%); }
+        .tree-layer:nth-child(3) { top: 160px; border-bottom-width: 160px; width: 240px; left: 50%; transform: translateX(-50%); }
+
+        .trunk {
+            width: 40px;
+            height: 80px;
+            background: #8B4513;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+
+        .star {
+            width: 50px;
+            height: 50px;
+            background: gold;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: shine 1.5s infinite;
+            box-shadow: 0 0 20px #ffff00;
+        }
+
+        @keyframes shine {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        /* Bolinhas de Natal */
+        .ornament {
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle at 30% 30%, #fff, #f00);
+            border-radius: 50%;
+            position: absolute;
+            box-shadow: 0 0 10px rgba(255,255,255,0.6);
+        }
+
+        /* Presentes */
+        .gifts {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .gift {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            animation: bounce 2s infinite;
+        }
+
+        .gift-box {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: #c00;
+            border: 3px solid #900;
+            border-radius: 8px;
+        }
+
+        .gift-box::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 25px;
+            background: #ff0;
+            transform: translateY(-50%);
+        }
+
+        .gift-box::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 25px;
+            height: 100%;
+            background: #ff0;
+            transform: translateX(-50%);
+        }
+
+        .ribbon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #ffd700;
+            border-radius: 50%;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 15px #ff0;
+        }
+
+        .ribbon::before, .ribbon::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 20px;
+            background: #ffd700;
+            top: 10px;
+            left: -10px;
+            transform: rotate(30deg);
+        }
+
+        .ribbon::after {
+            transform: rotate(-30deg);
+            left: auto;
+            right: -10px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Biscoitos e Leite */
+        .snacks {
+            display: flex;
+            gap: 30px;
+            margin: 40px 0;
+            align-items: center;
+        }
+
+        .cookies, .milk {
+            text-align: center;
+            font-size: 3rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .cookies { animation-delay: 0.5s; }
+        .milk { animation-delay: 1s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .cookies span, .milk span {
+            display: block;
+            font-size: 1rem;
+            margin-top: 10px;
+            color: #ffd700;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        footer p {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Flocos de neve -->
+    <div id="snowflakes"></div>
+
+    <header>
+        <h1>🥛🍪 Feliz Natal! 🎅🤶</h1>
+        <h2>Jingle Bells 🔔</h2>
+    </header>
+
+    <div class="container">
+        <!-- Árvore de Natal -->
+        <div class="christmas-tree">
+            <div class="star"></div>
+            <div class="tree-layer"></div>
+            <div class="tree-layer"></div>
+            <div class="tree-layer"></div>
+            <div class="trunk"></div>
+            
+            <!-- Bolinhas decorativas -->
+            <div class="ornament" style="top: 80px; left: 60px; background: radial-gradient(circle at 30% 30%, #fff, #00f);"></div>
+            <div class="ornament" style="top: 120px; right: 70px; background: radial-gradient(circle at 30% 30%, #fff, #ff0);"></div>
+            <div class="ornament" style="top: 200px; left: 50px; background: radial-gradient(circle at 30% 30%, #fff, #0f0);"></div>
+            <div class="ornament" style="top: 180px; right: 90px; background: radial-gradient(circle at 30% 30%, #fff, #f0f);"></div>
+            <div class="ornament" style="top: 250px; left: 80px; background: radial-gradient(circle at 30% 30%, #fff, #00ffff);"></div>
+        </div>
+
+        <!-- Presentes -->
+        <div class="gifts">
+            <div class="gift" style="animation-delay: 0s;">
+                <div class="gift-box"></div>
+                <div class="ribbon"></div>
+            </div>
+            <div class="gift" style="animation-delay: 0.3s; background: #006400;">
+                <div class="gift-box" style="background: #006400; border-color: #004d00;"></div>
+                <div class="ribbon" style="background: #ff4500;"></div>
+            </div>
+            <div class="gift" style="animation-delay: 0.6s; background: #1e90ff;">
+                <div class="gift-box" style="background: #1e90ff; border-color: #0066cc;"></div>
+                <div class="ribbon" style="background: #fff;"></div>
+            </div>
+        </div>
+
+        <!-- Biscoitos e Leite -->
+        <div class="snacks">
+            <div class="cookies">
+                🍪🍪🍪
+                <span>Biscoitos fresquinhos!</span>
+            </div>
+            <div class="milk">
+                🥛
+                <span>Leite quentinho!</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>🎄 Que o seu Natal seja cheio de amor, paz e magia! 🎁</p>
+    </footer>
+
+    <script>
+        // Criar flocos de neve
+        const snowflakesContainer = document.getElementById('snowflakes');
+        const snowflakeCount = 80;
+
+        for (let i = 0; i < snowflakeCount; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = ['❄', '❅', '❆'][Math.floor(Math.random() * 3)];
+            
+            // Posição e animação aleatória
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            snowflake.style.animationDelay = Math.random() * 5 + 's';
+            snowflake.style.fontSize = (Math.random() * 10 + 10) + 'px';
+            snowflake.style.opacity = Math.random() * 0.7 + 0.3;
+
+            snowflakesContainer.appendChild(snowflake);
+        }
+    </script>
+</body>
+</html>
